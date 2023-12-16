@@ -1,14 +1,45 @@
 "use client"
 
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 const SignUpPage = () => {
+
+  const router = useRouter();
   const [user, setUser] = React.useState({
     username: "",
     email: "",
     password: ""
   })
+
+  const [buttonDisabled, SetButtonDisabled] = React.useState(false);
+
+  const [ loading, SetLoading] = React.useState(false);
+
+  const OnSignUp = async () => {
+    try {
+      const response = await axios.post("/api/users/signup", user);
+      console.log("Success", response.data);
+      router.push("login")
+      
+    } catch (error: any) {
+      toast.error(error.message);
+      <Toaster/>
+    } finally {
+      SetLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.username.length > 0 && user.password.length > 0) {
+      SetButtonDisabled(false);
+    } else{
+      SetButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -49,7 +80,7 @@ const SignUpPage = () => {
               </label>
               <input 
                 type="password" 
-                value={user.email}
+                value={user.password}
                 onChange={(e) => setUser({...user, password: e.target.value})}
                 placeholder="password" 
                 className="input input-bordered" 
@@ -57,7 +88,8 @@ const SignUpPage = () => {
             </div>
             <Link href="/login">Login</Link>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Sign Up</button>
+              {loading ? <span className="loading loading-spinner text-primary"></span> : 
+              <button onClick={OnSignUp} className="btn btn-primary">{buttonDisabled ? "Enter Details" : "Sign Up"}</button>}
             </div>
           </form>
         </div>
