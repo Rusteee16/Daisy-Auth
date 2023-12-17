@@ -19,6 +19,7 @@ const LoginPage = () => {
 
   const OnLogin = async () => {
     try {
+      SetLoading(true);
       const response = await axios.post("/api/users/login", user);
       toast.success(response.data.message);
       console.log("Success", response.data);
@@ -75,7 +76,7 @@ const LoginPage = () => {
             </div>
             <Link href="/signup">SignUp</Link>
             <div className="form-control mt-6">
-            {loading ? <span className="loading loading-spinner text-primary"></span> : 
+            {loading ? <span className="loading loading-spinner text-primary self-center"></span> : 
               <button onClick={OnLogin} className="btn btn-primary">{buttonDisabled ? "Enter Details" : "Login"}</button>}
             </div>
           </div>
