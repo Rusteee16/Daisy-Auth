@@ -23,11 +23,11 @@ const SignUpPage = () => {
     try {
       const response = await axios.post("/api/users/signup", user);
       console.log("Success", response.data);
+      toast.success(response.data.message);
       router.push("login")
       
     } catch (error: any) {
       toast.error(error.message);
-      <Toaster/>
     } finally {
       SetLoading(false)
     }
@@ -43,13 +43,14 @@ const SignUpPage = () => {
 
   return (
     <div className="hero min-h-screen bg-base-200">
+      <div><Toaster/></div>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Sign Up Here!</h1>
           <p className="py-6">Check out my Next.js Authentication App.</p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <div className="card-body">
           <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -91,7 +92,7 @@ const SignUpPage = () => {
               {loading ? <span className="loading loading-spinner text-primary"></span> : 
               <button onClick={OnSignUp} className="btn btn-primary">{buttonDisabled ? "Enter Details" : "Sign Up"}</button>}
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
