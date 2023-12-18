@@ -39,6 +39,7 @@ const Profile = () => {
             <h1 className="text-5xl font-bold">Hello there</h1>
             <h2 className="text-3xl font-bold to-blue-700">{data === "nothing"? "Details" : <Link href={`/profile/${data}`}>{data}</Link>}</h2>
             <button onClick={Logout} className="btn btn-primary">Logout</button>
+            <br/>
             <button onClick={getUserDetails} className="btn btn-info">Get User Details</button>
             </div>
         </div>

@@ -21,6 +21,7 @@ const SignUpPage = () => {
 
   const OnSignUp = async () => {
     try {
+      SetLoading(true);
       const response = await axios.post("/api/users/signup", user);
       console.log("Success", response.data);
       toast.success(response.data.message);
