@@ -38,12 +38,12 @@ export default function VerifyEmailPage() {
     return(
         // <div className="card w-96 bg-base-100 shadow-xl">
         <div className="hero min-h-screen bg-base-200">
-        <div className="card w-96 bg-base-100 shadow-xl">
-        <div className="card-body">
+        <div className="card bg-base-100 shadow-xl w-fit">
+        <div className="card-body flex items-center">
             <h2 className="card-title">Verify Email</h2>
             <h3 className=" text-violet-600">{token ? `${token}` : "No Token"}</h3>
             {verified && (
-                <div>
+                <div className="flex items-center">
                     <h3 className="text-emerald-500">Email Verified</h3>
                     <Link href="/login">Login</Link>
                 </div>

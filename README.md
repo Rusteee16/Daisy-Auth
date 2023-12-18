@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Authentication Application
 
-## Getting Started
+Welcome to the NextJS Authentication Application! This application is designed to provide user registration, login, profile management, and password recovery functionalities. It is built on Next.js, with a sleek design created using Tailwind CSS and DaisyUI. The application leverages MongoDB for data storage, bcryptjs for password encryption, Nodemailer for sending verification emails, and Jsonwebtoken for secure authentication.
 
-First, run the development server:
+## Features
+
+- **User Registration:**
+  - Collects user information such as username, email, and password.
+  - Encrypts passwords using bcryptjs.
+  - Stores additional fields like `isVerified` (to check email verification status), `isAdmin` (to identify admin users), `verifyToken`, `forgotPasswordToken` and their expiry date in MongoDB.
+
+- **Email Verification:**
+  - Sends verification emails using Nodemailer and Mailtrap.io.
+  - Users receive an email with a link containing a verification token.
+  - Clicking the link verifies the email and sets `isVerified` to true in the database.
+
+- **Login:**
+  - Users can log in only if their email is verified.
+  - Generates a Jsonwebtoken upon successful login, storing it in cookies.
+  - The user remains logged in until the token expires.
+
+- **Profile Page:**
+  - After logging in, users are directed to a profile page.
+  - Includes "Get Details" and "Logout" buttons.
+  - "Get Details" fetches and displays the username, email, and user ID.
+  - "Logout" erases the stored web token, logging the user out.
+
+- **Forgot Password:**
+  - Provides a forgot password option on the login page.
+  - Users submit their registered email.
+  - Receives a password reset email with a token-embedded link.
+  - Clicking the link directs users to a page to enter a new password.
+  - Verifies the token and updates the encrypted new password in the database.
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Rusteee16/Daisy-Auth.git
+   ```
+
+2. **Install dependencies:**
+
+  ```bash
+  cd Daisy_Auth
+  npm install
+  ```
+
+3. **Set up environment variables:**
+
+Create a .env file in the root of the project.
+
+Add the following variables:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+MONGODB_URL=your_mongodb_url
+MAILTRAP_USERNAME=your_mailtrap_username
+MAILTRAP_PASSWORD=your_mailtrap_password
+TOKEN_SECRET=your_jwt_secret
+DOMAIN=http://localhost:3000 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Run the application:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Visit http://localhost:3000 in your browser to access the application.
 
-## Learn More
+Feel free to explore and enhance the application as needed! If you have any questions or encounter issues, please open an issue. Happy coding! 🚀
 
-To learn more about Next.js, take a look at the following resources:
+# Acknowledgements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Special thanks to [Hitesh Choudhary](https://github.com/hiteshchoudhary) for providing excellent tutorial videos on YouTube.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Hitesh Choudhary's YouTube Channel](https://www.youtube.com/@HiteshChoudharydotcom)
 
-## Deploy on Vercel
+Thank you, Hitesh, for sharing your knowledge and making learning enjoyable!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

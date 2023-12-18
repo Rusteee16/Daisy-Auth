@@ -54,7 +54,7 @@ const SignUpPage = () => {
           <div className="card-body">
           <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Username</span>
               </label>
               <input 
                 type="username" 
@@ -90,7 +90,7 @@ const SignUpPage = () => {
             </div>
             <Link href="/login">Login</Link>
             <div className="form-control mt-6">
-              {loading ? <span className="loading loading-spinner text-primary"></span> : 
+              {loading ? <span className="loading loading-spinner text-primary self-center"></span> : 
               <button onClick={OnSignUp} className="btn btn-primary">{buttonDisabled ? "Enter Details" : "Sign Up"}</button>}
             </div>
           </div>

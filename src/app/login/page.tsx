@@ -26,7 +26,9 @@ const LoginPage = () => {
       router.push('/profile')
       
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.response.data.error);
+      // console.log(error);
+      
     } finally {
       SetLoading(false)
     }
@@ -74,6 +76,7 @@ const LoginPage = () => {
                 className="input input-bordered" 
                 required />
             </div>
+            <Link href="/validatemail">Forgot password?</Link>
             <Link href="/signup">SignUp</Link>
             <div className="form-control mt-6">
             {loading ? <span className="loading loading-spinner text-primary self-center"></span> : 
