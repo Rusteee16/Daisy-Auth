@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
-const page = () => {
+const Validatemail = () => {
     const router = useRouter()
     const [useremail, SetUserEmail] = useState({
         email: ""
@@ -66,4 +66,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Validatemail

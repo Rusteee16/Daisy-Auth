@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
-const page = () => {
-    const [verified, setVerified] = useState(false);
+const PasswordReset = () => {
+    // const [verified, setVerified] = useState(false);
     const router = useRouter()
     
     const [user, setUser] = React.useState({
@@ -25,7 +25,7 @@ const page = () => {
         const response = await axios.post("/api/users/passwordreset", user);
         toast.success(response.data.message);
         console.log("Success", response.data);
-        setVerified(true);
+        // setVerified(true);
         router.push('/login')
         
         } catch (error: any) {
@@ -46,7 +46,7 @@ const page = () => {
         } else{
         SetButtonDisabled(true);
         }
-    }, [user.email, user.password]);
+    }, [user]);
     
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -88,4 +88,4 @@ const page = () => {
     )
 }
 
-export default page
+export default PasswordReset
