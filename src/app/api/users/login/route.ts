@@ -20,9 +20,10 @@ export async function POST(request: NextRequest){
             return NextResponse.json({error: "Password does not match"},{status: 400})
         }
 
-        if (!user.isVerified){
-            return NextResponse.json({error: "Verify your email and try again."},{status: 400})
-        }
+        // MailTrap credentials disabled so verificatiojn not possible hence this segment disbales
+        // if (!user.isVerified){
+        //     return NextResponse.json({error: "Verify your email and try again."},{status: 400})
+        // }
 
         const tokenData = {
             id: user._id,
