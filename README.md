@@ -43,7 +43,7 @@ Welcome to the NextJS Authentication Application! This application is designed t
 2. **Install dependencies:**
 
   ```bash
-  cd Daisy_Auth
+  cd Daisy-Auth
   npm install
   ```
 
